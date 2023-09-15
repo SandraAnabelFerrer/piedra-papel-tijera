@@ -7,6 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseService {
   constructor(private firestore: AngularFireDatabase) {}
+  
+  registrarNombre(nombre: string) {
+    const jugador = nombre;
+      
+    
+    return this.firestore.list('nombre').push(jugador);
+  }
 
   registrarResultado(partida: string, jugador1: string, jugador2: string, ganador: string) {
     const resultado = {

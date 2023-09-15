@@ -1,0 +1,89 @@
+/* Estilos generales */
+body {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Estilos para el título principal */
+  .titulo {
+    font-size: 24px;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para la sección de ingreso de nombre */
+  .ingreso-nombre {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .boton-ingreso {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Estilos para la sección de juego */
+  .juego {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .nombre-jugador {
+    font-size: 24px;
+  }
+  
+  .buena-suerte {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .opciones {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .opcion {
+    text-align: center;
+  }
+  
+  .imagen-opcion {
+    cursor: pointer;
+  }
+  
+  .resultado {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .victorias {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .estadisticas {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .boton-reinicio {
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para las imágenes de las opciones */
+  .imagen-opcion {
+    max-width: 100px;
+  }
+  

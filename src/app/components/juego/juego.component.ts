@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service'; // servicio FirebaseService
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-juego',
@@ -20,26 +20,38 @@ export class JuegoComponent implements OnInit {
 
 
   constructor(
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private router:Router,
     private firebaseService: FirebaseService // Inyecta el servicio FirebaseService
   ) {this.nombreJugador=this.route.snapshot.paramMap.get('nombre')}
 
   ngOnInit() {
+  this.iniciarJuego();
+ 
 
-    if (this.nombreJugador) {
-      this.firebaseService.obtenerEstadisticas(this.nombreJugador).subscribe((data) => {
-          this.estadisticasJugador = data;
-        });
+        
     }
+    // iniciarJuego(){
+    //   if(this.nombreJugador?.trim()!==''){
+    //     this.router.navigate(['/juego',this.nombreJugador]);
+    //     this.route.params.subscribe((params)=>{
+    //       this.nombreJugador=params['nombre']
+    //     })
+     // }}
+      iniciarJuego() {
+        console.log(this.nombreJugador);
+        // Validar que el nombre no esté vacío
+        if (this.nombreJugador?.trim() !== '') {
+          // Navegar al componente de juego y pasar el nombre como parámetro
+          this.router.navigate(['/juego', this.nombreJugador]);
+          this.ingresarNombre();
+        }}
     
-    };
     ingresarNombre() {
      console.log('nombre',this.nombreJugador);
       // Obtener estadísticas cuando el usuario ingresa su nombre
       if (this.nombreJugador) {
-        this.firebaseService.obtenerEstadisticas(this.nombreJugador).subscribe((data) => {
-            this.estadisticasJugador = data;
-          });
+        this.firebaseService.registrarNombre(this.nombreJugador);
+          
       }
     }
 

@@ -6,7 +6,7 @@ import { ResultadoComponent } from './components/resultado/resultado.component';
 
 const routes: Routes = [
 
-{path:'juego', component: JuegoComponent},
+{path:'juego/:nombreJugador', component: JuegoComponent},
 {path:'resultado', component: ResultadoComponent},
 
 
