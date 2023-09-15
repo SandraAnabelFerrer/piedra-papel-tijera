@@ -4,13 +4,13 @@
   <div *ngIf="!nombreJugador" class="ingreso-nombre">
     <h2>Ingresa tu nombre</h2>
     <form (submit)="ingresarNombre()">
-      <input type="text" [(ngModel)]="nombre" placeholder="Tu nombre" required name="nombre">
+      <input type="text" [(ngModel)]="nombreJugador" placeholder="Tu nombre" required name="nombre">
       <button type="submit" class="boton-ingreso">Ingresar</button>
     </form>
   </div>
 
-  <div *ngIf="nombre" class="juego">
-    <p class="nombre">{{ nombreJugador }} vs. PC</p>
+  <div *ngIf="nombreJugador" class="juego">
+    <p class="nombre-jugador">{{ nombreJugador }} vs. PC</p>
     <p class="buena-suerte">¡Buena suerte! 🍀</p>
 
     <p>Selecciona tu opción:</p>
