@@ -1,0 +1,13 @@
+<div class="resultado-container">
+  <h2>Resultados</h2>
+  <ul class="resultado-list">
+    <li class="resultado-item" *ngFor="let resultado of resultados">
+      <div class="resultado-text">Partida: {{ resultado.partida }}</div>
+      <div class="resultado-text">Jugador 1: {{ resultado.jugador1 }}</div>
+      <div class="resultado-text">Jugador 2: {{ resultado.jugador2 }}</div>
+      <div class="resultado-text">Ganador: {{ resultado.ganador }}</div>
+      <div class="resultado-fecha">Fecha: {{ resultado.fecha | date }}</div>
+    </li>
+  </ul>
+</div>
+  

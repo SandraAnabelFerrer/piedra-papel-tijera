@@ -1,0 +1,121 @@
+.container{
+  height : 100vh;
+}
+
+/* Estilos generales */
+html, body {
+  
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Evita barras de desplazamiento si el contenido es más grande */
+  background-color: black;
+  color: aqua;
+  font-weight: bold;
+}
+
+/* Estilos para el título principal */
+.titulo {
+  font-size: 40px;
+  color: orange;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Estilos para la sección de ingreso de nombre */
+.ingreso-nombre {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.boton-ingreso {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  display: block; /* Colocar el botón en una línea separada */
+  margin-top: 10px; /* Agregar espacio superior al botón */
+  margin-left: auto;
+  margin-right: auto; /* Centrar horizontalmente */
+}
+
+/* Estilos para la sección de juego */
+.juego {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  color: aqua;
+}
+
+.nombre-jugador {
+  font-size: 24px;
+  color:aqua;
+}
+
+.buena-suerte {
+  font-size: 30px;
+  margin-top: 10px;
+color: greenyellow;
+}
+
+.opciones {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.opcion {
+  text-align: center;
+}
+
+.imagen-opcion {
+  cursor: pointer;
+}
+
+.contenedor-estadisticas {
+  text-align: left;
+  position: absolute;
+  
+
+}
+
+.resultado, .victorias, .estadisticas {
+  font-size: 18px;
+  color: greenyellow; /* Color de texto en verde */
+  background-color: transparent; /* Fondo transparente */
+  vertical-align: middle;
+  margin-top: -10px;
+}
+
+
+
+
+
+.boton-reinicio {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 0px;
+  margin-bottom: auto;
+}
+
+/* Estilos para las imágenes de las opciones */
+.imagen-opcion {
+  max-width: 150px;
+  filter: invert(100%);
+  margin: 0 10px;
+  text-align: center;
+  transition: filter 0.3s;
+  cursor: pointer;
+  
+}
+.imagen-opcion:hover {
+  filter: invert(100%); /* Invierte los colores al pasar el mouse */
+}

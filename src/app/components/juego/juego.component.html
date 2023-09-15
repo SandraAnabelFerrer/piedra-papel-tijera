@@ -1,0 +1,59 @@
+<body>
+<div class="container">
+  <h1 class="titulo">Juego de Piedra, Papel o Tijera</h1>
+  <div *ngIf="!nombreJugador" class="ingreso-nombre">
+    <h2>Ingresa tu nombre</h2>
+    <form (submit)="ingresarNombre()">
+      <input type="text" [(ngModel)]="nombre" placeholder="Tu nombre" required name="nombre">
+      <button type="submit" class="boton-ingreso">Ingresar</button>
+    </form>
+  </div>
+
+  <div *ngIf="nombre" class="juego">
+    <p class="nombre">{{ nombreJugador }} vs. PC</p>
+    <p class="buena-suerte">¡Buena suerte! 🍀</p>
+
+    <p>Selecciona tu opción:</p>
+    <div class="opciones">
+      <div class="opcion">
+        
+        <img
+          src="assets/images/rock.png"
+          alt="Piedra"
+          (click)="jugar('piedra')"
+          class="imagen-opcion"
+        />
+        <p>Piedra</p>
+      </div>
+      <div class="opcion">
+        <img
+          src="assets/images/paper.png"
+          alt="Papel"
+          (click)="jugar('papel')"
+          class="imagen-opcion"
+        />
+        <p>Papel</p>
+      </div>
+      <div class="opcion">
+        <img
+          src="assets/images/scissors.png"
+          alt="Tijera"
+          (click)="jugar('tijera')"
+          class="imagen-opcion"
+        />
+        <p>Tijera</p>
+      </div>
+    </div>
+    <div class="contenedor-estadisticas">
+      <p class="resultado">Resultado: {{ resultado }}</p>
+      <p class="victorias">Victorias del Jugador: {{ victoriasJugador }}</p>
+      <p class="estadisticas"><i>Estadisticas del Jugador</i></p>
+      <p class="estadisticas">Victorias: {{ estadisticasJugador.victorias || 0 }}</p>
+      <p class="estadisticas">Derrotas: {{ estadisticasJugador.derrotas || 0 }}</p>
+    </div>
+    
+      
+    <button (click)="reiniciarJuego()" [disabled]="!juegoTerminado" class="boton-reinicio">Reiniciar Juego</button>
+  </div>
+</div>
+</body>
