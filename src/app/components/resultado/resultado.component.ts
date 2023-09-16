@@ -18,7 +18,7 @@ export class ResultadoComponent implements OnInit {
       this.nombreJugador = params['nombre'];
     });
 
-    // Ahora puedes usar this.nombreJugador para obtener las estadísticas del jugador
+    //  this.nombreJugador para obtener las estadísticas del jugador
     this.firebaseService.obtenerEstadisticas(this.nombreJugador).subscribe((data: Resultados[]) => {
       this.resultados = data;
     });

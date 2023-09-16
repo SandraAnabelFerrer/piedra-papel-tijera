@@ -13,10 +13,9 @@ export class JuegoComponent implements OnInit {
   victoriasJugador: number = 0;
   victoriasPC: number = 0;
   jugadasRealizadas: number = 0;
-  juegoTerminado: boolean = false;
   estadisticasJugador: any = {};
-
-  
+  juegoTerminado: boolean = false;
+  juegoIniciado: boolean = false;
 
 
   constructor(
