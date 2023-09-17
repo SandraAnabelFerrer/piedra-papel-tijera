@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { Resultados} from 'src/app/model/resultado.model'; // Importa la interfaz Resultado
-import { DatePipe } from '@angular/common';
+import { Resultados } from 'src/app/model/resultado.model';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-resultado',
   templateUrl: './resultado.component.html',
@@ -10,22 +11,42 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ResultadoComponent implements OnInit {
   resultados: Resultados[] = [];
-  nombreJugador: string = ''; 
-  constructor(private route: ActivatedRoute,private firebaseService: FirebaseService) {}
+  nombreJugador: string = '';
+  private subscription: Subscription | undefined;
+
+  constructor(
+    private route: ActivatedRoute,
+    private firebaseService: FirebaseService
+  ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.subscription = this.route.params.subscribe((params) => {
       this.nombreJugador = params['nombre'];
-    });
-
-    //  this.nombreJugador para obtener las estadísticas del jugador
-    this.firebaseService.obtenerEstadisticas(this.nombreJugador).subscribe((data: Resultados[]) => {
-      this.resultados = data;
+      if (this.nombreJugador) {
+        this.cargarEstadisticas(this.nombreJugador);
+      }
     });
   }
+
+  cargarEstadisticas(nombreJugador: string) {
+    this.subscription = this.firebaseService
+  .obtenerEstadisticas(nombreJugador)
+  .subscribe({
+    next: (data: any) => {
+      this.resultados = data.resultados;
+    },
+    error: (error) => {
+      console.error('Error al cargar estadísticas:', error);
+    }
+  });
+
+      
+  }
+
+  ngOnDestroy() {
+    
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }
-
-
-
-
-

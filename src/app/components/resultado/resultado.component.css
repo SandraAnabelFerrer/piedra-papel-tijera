@@ -1,0 +1,22 @@
+
+.container{
+    height : 150vh;
+  }
+
+
+html, body {
+  
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita barras de desplazamiento si el contenido es más grande */
+    background-color: black;
+    color: aqua;
+    font-weight: bold;
+  }
+  .titulo {
+    font-size: 40px;
+    color: orange;
+    margin-top: 20px;
+    text-align: center;
+  }

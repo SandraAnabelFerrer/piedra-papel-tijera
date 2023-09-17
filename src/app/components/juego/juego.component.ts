@@ -12,30 +12,26 @@ export class JuegoComponent implements OnInit {
   resultado: string = '';
   victoriasJugador: number = 0;
   victoriasPC: number = 0;
+  jugadasGanadasJugador: number = 0;
+  jugadasGanadasPC: number = 0;
   jugadasRealizadas: number = 0;
   estadisticasJugador: any = {};
   juegoTerminado: boolean = false;
   juegoIniciado: boolean = false;
-
+  nombreGanadorMejorDeTres: string = ''; 
 
   constructor(
     private route: ActivatedRoute, private router:Router,
     private firebaseService: FirebaseService // Inyecta el servicio FirebaseService
-  ) {this.nombreJugador=this.route.snapshot.paramMap.get('nombre')}
+  ) {this.nombreJugador=this.route.snapshot.paramMap.get('nombre');this.nombreGanadorMejorDeTres = ''; }
 
   ngOnInit() {
   this.iniciarJuego();
- 
-
+  
+  
         
     }
-    // iniciarJuego(){
-    //   if(this.nombreJugador?.trim()!==''){
-    //     this.router.navigate(['/juego',this.nombreJugador]);
-    //     this.route.params.subscribe((params)=>{
-    //       this.nombreJugador=params['nombre']
-    //     })
-     // }}
+    
       iniciarJuego() {
         console.log(this.nombreJugador);
         // Validar que el nombre no esté vacío
@@ -82,17 +78,52 @@ export class JuegoComponent implements OnInit {
 
       this.jugadasRealizadas++;
 
+      if (ganador === 'jugador') {
+        this.jugadasGanadasJugador++;
+      } else if (ganador === 'pc') {
+        this.jugadasGanadasPC++;
+      }
+      if(this.jugadasGanadasJugador===2 || this.jugadasGanadasPC===2){
+         this.juegoTerminado = true;
+      }
+      
+
       if (this.jugadasRealizadas === 3) {
         this.juegoTerminado = true;
+        this.nombreGanadorMejorDeTres = this.determinarGanadorFinal() ?? '';// Asigna el ganador al nombreGanadorMejorDeTres
+      this.registrarResultadoMejorDeTres(this.nombreJugador, this.nombreGanadorMejorDeTres); // Registra el resultado en Firebase
       }
       
       // Si el juego ha terminado, registra el resultado en Firebase
       if (this.juegoTerminado) {
         const ganador = this.victoriasJugador > this.victoriasPC ? 'jugador' : 'pc';
         this.firebaseService.registrarResultado('partida1','jugador', 'pc', ganador);
+        this.firebaseService.incrementarVictorias( this.nombreJugador,'jugador');
+      }
+    
+      
+
+      else {
+    this.firebaseService.incrementarDerrotas(this.nombreJugador, 'pc');
+           }
       }
     }
-  }
+     determinarGanadorFinal(){
+      if (this.jugadasGanadasJugador > this.jugadasGanadasPC) {
+        return this.nombreJugador;
+      } else if (this.jugadasGanadasPC > this.jugadasGanadasJugador) {
+        return 'PC';
+      } else {
+        return 'Empate';
+      }
+    }
+  
+  private registrarResultadoMejorDeTres(nombreJugador: string, ganador: string) {
+      // Lógica para registrar el resultado en Firebase
+      this.firebaseService['registrarResultadoMejorDeTres'](nombreJugador, ganador);
+
+    }
+  
 
   reiniciarJuego() {
     // Reinicia el juego
@@ -100,7 +131,13 @@ export class JuegoComponent implements OnInit {
     this.victoriasJugador = 0;
     this.victoriasPC = 0;
     this.resultado = '';
+    this.jugadasGanadasJugador =0;
+    this.jugadasGanadasPC = 0;
     this.juegoTerminado = false;
+    this.estadisticasJugador;
+    this.juegoTerminado = false;
+    this.juegoIniciado= false;
+    this.nombreGanadorMejorDeTres='';
   }
 
   private determinarGanador(opcionJugador: string, opcionPC: string): string {
@@ -115,8 +152,13 @@ export class JuegoComponent implements OnInit {
     } else {
       return 'pc';
     }
+    
   }
+
+
+redirigirAResultado() {
+  // Aquí rediriges a la página de resultados cuando el usuario hace clic en el botón.
+  this.router.navigate(['/resultado', this.nombreJugador]);
 }
-
-
+}
 

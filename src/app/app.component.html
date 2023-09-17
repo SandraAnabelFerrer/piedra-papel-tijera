@@ -1,3 +1,16 @@
-<app-juego></app-juego>
-
+<div class="container">
+    <div class="content">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <app-juego *ngIf="componenteJuego"></app-juego>
+          <app-resultado *ngIf="componenteResultado"></app-resultado>
+          <br>
+          <div class="text-center">
+            <button (click)="mostrarResultados()" *ngIf="componenteJuego" type="button" class="btn btn-info">Resultados</button>
+            <button (click)="regresaralJuego()" *ngIf="componenteResultado" type="button" class="btn btn-dark">Regresar al Juego</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   

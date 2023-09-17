@@ -2,7 +2,7 @@
 
 
 .container{
-  height : 100vh;
+  height : 150vh;
 }
 
 /* Estilos generales */
@@ -23,12 +23,18 @@ html, body {
   color: orange;
   margin-top: 20px;
   text-align: center;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", sans-serif;
+  /* Agregar un borde redondeado para mayor efecto */
+  border-radius: 10px;
 }
+
 
 /* Estilos para la sección de ingreso de nombre */
 .ingreso-nombre {
+
   text-align: center;
   margin-top: 20px;
+  color: orange;
 }
 
 .boton-ingreso {

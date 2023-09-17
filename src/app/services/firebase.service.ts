@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FirebaseService {
+  [x: string]: any;
   constructor(private firestore: AngularFireDatabase) {}
   
   registrarNombre(nombre: string) {
     const jugador = nombre;
-      
     
     return this.firestore.list('nombre').push(jugador);
   }
@@ -26,6 +26,13 @@ export class FirebaseService {
     return this.firestore.list('resultados').push(resultado);
   }
 
+  registrarResultadoMejordeTres(nombreJugador:String, ganador :string ){
+
+    const resultadoRef= this['db'].object('resultados/${nombreJugador}MejorDeTres');
+    resultadoRef.set(ganador);
+    this['nombreGanadorMejorDeTres'] = ganador; 
+  }
+
   incrementarEstadistica(jugador: string, estadistica: string) {
     this.firestore.object(`estadisticas/${jugador}/${estadistica}`)
       .valueChanges()
@@ -35,20 +42,23 @@ export class FirebaseService {
       });
   }
 
-  incrementarVictorias(jugador: string) {
-    this.incrementarEstadistica(jugador, 'victorias');
+  incrementarVictorias(jugador: string, resultado: string) {
+    if (resultado === 'jugador') {
+      this.incrementarEstadistica(jugador, 'victorias');
+    } else {
+      this.incrementarEstadistica(jugador, 'derrotas');
+    }
   }
 
-  incrementarDerrotas(jugador: string) {
-    this.incrementarEstadistica(jugador, 'derrotas');
+  incrementarDerrotas(jugador: string, resultado: string) {
+    if (resultado === 'jugador') {
+      this.incrementarEstadistica(jugador, 'derrotas');
+    } else {
+      this.incrementarEstadistica(jugador, 'victorias');
+    }
   }
 
   obtenerEstadisticas(jugador: string): Observable<any> {
     return this.firestore.object(`estadisticas/${jugador}`).valueChanges();
   }
 }
-
-
-
-
-  
