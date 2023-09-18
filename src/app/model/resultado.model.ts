@@ -1,4 +1,13 @@
 // resultado.model.ts
+export interface Estadisticas {
+  nombre: string;
+  victorias: number;
+  derrotas: number;
+}
+
+
+
+
 export interface Resultados {
   nombre: string;  
   partida: string;
@@ -6,5 +15,6 @@ export interface Resultados {
     jugador2: string;
     ganador: string;
     fecha: Date;
+    estadisticas: Estadisticas; 
   }
   
