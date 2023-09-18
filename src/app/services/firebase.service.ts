@@ -21,17 +21,20 @@ export class FirebaseService {
       jugador1,
       jugador2,
       ganador,
+      
       fecha: new Date().toString(),
     };
     return this.firestore.list('resultados').push(resultado);
   }
 
-  registrarResultadoMejordeTres(nombreJugador:String, ganador :string ){
-
-    const resultadoRef= this['db'].object('resultados/${nombreJugador}MejorDeTres');
-    resultadoRef.set(ganador);
-    this['nombreGanadorMejorDeTres'] = ganador; 
+  registrarResultadoMejorDeTres(nombreJugador: string, ganadorMejorDeTres: string) {
+    const resultadoRef ={
+      nombreJugador,
+      ganadorMejorDeTres,
+    };
+    return this.firestore.list('ganadorMejordeTres').push(resultadoRef);
   }
+  
 
   incrementarEstadistica(jugador: string, estadistica: string) {
     this.firestore.object(`estadisticas/${jugador}/${estadistica}`)

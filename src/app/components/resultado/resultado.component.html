@@ -1,15 +1,28 @@
 
 <body>
-<div class="resultado-container">
-  <h2>Resultados</h2>
-  <ul class="resultado-list">
-    <li class="resultado-item" *ngFor="let resultado of resultados">
-      <div class="resultado-text">Partida: {{ resultado.partida }}</div>
-      <div class="resultado-text">Jugador 1: {{ resultado.jugador1 }}</div>
-      <div class="resultado-text">Jugador 2: {{ resultado.jugador2 }}</div>
-      <div class="resultado-text">Ganador: {{ resultado.ganador }}</div>
-      <div class="resultado-fecha">Fecha: {{ resultado.fecha | date }}</div>
-    </li>
-  </ul>
-</div> 
+  <div *ngIf="resultados.length > 0">
+    <h2>Estadísticas de {{ nombreJugador }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Partida</th>
+          <th>Jugador 1</th>
+          <th>Jugador 2</th>
+          <th>Ganador</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultado of resultados">
+          <td>{{ resultado.partida }}</td>
+          <td>{{ resultado.jugador1 }}</td>
+          <td>{{ resultado.jugador2 }}</td>
+          <td>{{ resultado.ganador }}</td>
+          <td>{{ resultado.fecha | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
 </body>

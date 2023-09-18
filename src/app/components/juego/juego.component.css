@@ -55,7 +55,7 @@ html, body {
 .juego {
   text-align: center;
   margin-top: 20px;
-  font-size: 24px;
+  font-size: 20px;
   color: aqua;
 }
 
@@ -84,7 +84,7 @@ color: greenyellow;
   cursor: pointer;
 }
 
-.contenedor-estadisticas {
+.contenedor-resultado {
   text-align: left;
   position: absolute;
   
@@ -128,3 +128,4 @@ color: greenyellow;
 .imagen-opcion:hover {
   filter: invert(100%); /* Invierte los colores al pasar el mouse */
 }
+

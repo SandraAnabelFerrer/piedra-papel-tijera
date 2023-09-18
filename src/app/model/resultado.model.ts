@@ -1,6 +1,7 @@
 // resultado.model.ts
 export interface Resultados {
-    partida: string;
+  nombre: string;  
+  partida: string;
     jugador1: string;
     jugador2: string;
     ganador: string;

@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Piedra-Papel-Tijera';
-  
+  nombreJugador: string = '';
   componenteResultado = false;
   componenteJuego = true;
-  constructor() {}
+  constructor(private router: Router) {}
 
   mostrarResultados(){
     this.componenteResultado = true;
@@ -18,6 +18,11 @@ export class AppComponent {
   }
 
   regresaralJuego(){
+     // Restablece el nombre del jugador a una cadena vacía
+  this.nombreJugador = '';
+
+  // Redirige a la pantalla de inicio del juego
+  
     this.componenteResultado = false;
     this.componenteJuego = true;
   }

@@ -3,7 +3,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { Resultados } from 'src/app/model/resultado.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-resultado',
   templateUrl: './resultado.component.html',
@@ -16,7 +16,8 @@ export class ResultadoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class ResultadoComponent implements OnInit {
   .subscribe({
     next: (data: any) => {
       this.resultados = data.resultados;
+      this.cdr.detectChanges();
     },
     error: (error) => {
       console.error('Error al cargar estadísticas:', error);

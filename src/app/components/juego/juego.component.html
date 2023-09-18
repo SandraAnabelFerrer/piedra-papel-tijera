@@ -10,15 +10,17 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2 class="text-center"style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Ingrese su nombre:</h2>
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 justify-content-center">
           <input type="text" [(ngModel)]="nombreJugador" name="nombreJugador" placeholder="Ingresa tu nombre">
           <div class="input-group-append">
             <button type="button"(click)="iniciarJuego()" class="btn btn-outline-dark">Iniciar Juego</button>
           </div>
+          <div *ngIf="juegoIniciado" class="juego">
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
   <div *ngIf="nombreJugador" class="juego">
     <p class="nombre-jugador">{{ nombreJugador }} vs. PC</p>
@@ -56,12 +58,13 @@
       </div>
     </div>
     
-     <div class="contenedor-estadisticas">
+     <div class="contenedor-resultado">
       <p class="resultado">Resultado: {{ resultado }}</p>
       <p class="victorias">Victorias del Jugador: {{ victoriasJugador }}</p>
         <!-- Mostrar el resultado de cada jugada -->
         <p>Resultado de la jugada {{ jugadasRealizadas }}: {{ resultado }}</p>
-        <h2>Resultado Final al Mejor de Tres</h2>
+
+        <p class="mejorGanadordeTres">Resultado Final al Mejor de Tres</p>
         <p>El Ganador al Mejor de Tres es: {{ nombreGanadorMejorDeTres }}</p>
       
     </div> 
