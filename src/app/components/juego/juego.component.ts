@@ -26,7 +26,7 @@ export class JuegoComponent implements OnInit {
   ) { this.nombreJugador = this.route.snapshot.paramMap.get('nombre'); this.nombreGanadorMejorDeTres = ''; }
 
   ngOnInit() {
-    this.iniciarJuego();
+    
 
   }
 
@@ -94,7 +94,7 @@ export class JuegoComponent implements OnInit {
       if (this.jugadasRealizadas === 3) {
         this.juegoTerminado = true;
         this.nombreGanadorMejorDeTres = this.determinarGanadorFinal() ?? '';
-        this.firebaseService.registrarResultadoMejorDeTres(this.nombreJugador, this.nombreGanadorMejorDeTres); // Llama a la función en el servicio
+        this.firebaseService.registrarResultadoMejorDeTres(this.nombreGanadorMejorDeTres); // Llama a la función en el servicio
       }
 
 
@@ -102,12 +102,12 @@ export class JuegoComponent implements OnInit {
       if (this.juegoTerminado) {
         const ganador = this.victoriasJugador > this.victoriasPC ? 'jugador' : 'pc';
         this.firebaseService.registrarResultado('partida1', 'jugador', 'pc', ganador);
-        this.firebaseService.incrementarVictorias(this.nombreJugador, 'jugador');
+        //this.firebaseService.incrementarVictorias(this.nombreJugador, 'jugador');
       }
 
-      else {
-        this.firebaseService.incrementarDerrotas(this.nombreJugador, 'pc');
-      }
+      // else {
+      //   this.firebaseService.incrementarDerrotas(this.nombreJugador, 'pc');
+      // }
     }
   }
   determinarGanadorFinal() {

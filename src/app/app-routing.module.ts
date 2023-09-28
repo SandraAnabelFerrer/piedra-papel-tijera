@@ -13,8 +13,9 @@ import { environment } from 'src/environments/environment';
 const routes: Routes = [
 
   { path: '', redirectTo: '/juego', pathMatch: 'full' }, // Ruta por defecto
-  { path: 'juego/:nombreJugador', component: JuegoComponent }, // Ruta para la página inicial (juego.html)
+  { path: 'juego', component: JuegoComponent }, // Ruta para la página inicial (juego.html)
   { path: 'resultado', component: ResultadoComponent },
+  { path: '**', redirectTo: '/juego', pathMatch: 'full' },
   
 
 ];

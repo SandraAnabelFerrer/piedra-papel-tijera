@@ -6,8 +6,8 @@
           <app-resultado *ngIf="componenteResultado"></app-resultado>
           <br>
           <div class="text-center">
-            <button (click)="mostrarResultados()" *ngIf="componenteJuego" type="button" class="btn btn-info">Resultados</button>
-            <button (click)="regresaralJuego()" *ngIf="componenteResultado" type="button" class="btn btn-dark">Regresar al Juego</button>
+            <button (click)="mostrarResultados()" *ngIf="componenteJuego" type="button" class="btn btn-info"routerLink="/resultado">Resultados</button>
+            <button (click)="regresaralJuego()" *ngIf="componenteResultado" type="button" class="btn btn-dark" routerLink="/juego">Regresar al Juego</button>
           </div>
         </div>
       </div>
